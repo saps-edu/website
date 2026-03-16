@@ -546,3 +546,46 @@ to{opacity:1; transform:translateY(0);}
   padding-left: 0;  /* removes indentation */
   margin-left: 0;
 }
+
+/* RED SIREN BACKGROUND EFFECT */
+
+.section{
+position:relative;
+overflow:hidden;
+}
+
+/* animated overlay */
+.section::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+
+background:radial-gradient(circle at 30% 30%, rgba(255,0,0,0.15), rgba(0,80,255,0.12), transparent 40%),
+            radial-gradient(circle at 70% 70%, rgba(255,0,0,0.12), transparent 40%);
+
+animation:sirenMove 8s linear infinite;
+
+pointer-events:none;
+}
+
+/* movement animation */
+@keyframes sirenMove{
+0%{
+transform:rotate(0deg) translateX(0);
+}
+50%{
+transform:rotate(180deg) translateX(60px);
+}
+100%{
+transform:rotate(360deg) translateX(0);
+}
+}
+
+/* keep content above animation */
+.section > *{
+position:relative;
+z-index:2;
+}
